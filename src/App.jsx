@@ -587,14 +587,13 @@ const App = () => {
                 , your dedication to the Milano-Cortina 2026 Games is exceptional!
               </p>
               <p className="text-white/80">
-                The IOC Media Operations team has been notified of your contribution.<br />
-                A recognition email will be sent to <span className="font-bold text-pink-300">{userProfile?.email}</span>
+                The Olympics Media team has been notified of your completed tasks.
               </p>
             </div>
-            <div className="flex items-center justify-center gap-2 text-pink-300 mb-6">
-              <Heart className="w-6 h-6 animate-pulse" />
-              <span className="font-bold">Thank you for supporting the Olympic movement!</span>
-              <Heart className="w-6 h-6 animate-pulse" />
+            <div className="flex items-center justify-center gap-2 mb-6 px-4 py-3 bg-white/15 rounded-xl">
+              <Heart className="w-6 h-6 animate-pulse text-white flex-shrink-0" />
+              <span className="font-bold text-white drop-shadow-sm">Thank you for supporting the Olympic movement!</span>
+              <Heart className="w-6 h-6 animate-pulse text-white flex-shrink-0" />
             </div>
             <button
               onClick={() => setShowCelebration(false)}
@@ -881,29 +880,27 @@ const App = () => {
 
         {currentView === 'availability' && (
           <div className="space-y-6">
+            <div className="flex justify-start">
+              <button
+                type="button"
+                onClick={handleSaveCalendar}
+                className="px-6 py-4 bg-lime-400 hover:bg-lime-300 text-slate-900 font-black text-lg rounded-xl shadow-lg hover:scale-105 transition-all"
+              >
+                Save my calendar
+              </button>
+            </div>
             {userProfile?.needsAvailabilityOnboarding && (
-              <>
-                <div className="flex justify-start">
-                  <button
-                    type="button"
-                    onClick={handleSaveCalendar}
-                    className="px-6 py-4 bg-lime-400 hover:bg-lime-300 text-slate-900 font-black text-lg rounded-xl shadow-lg hover:scale-105 transition-all"
-                  >
-                    Save my calendar
-                  </button>
-                </div>
-                <div className="bg-cyan-500/20 border-2 border-cyan-400/50 rounded-2xl p-6">
-                  <h3 className="font-black text-xl mb-2 text-cyan-300">Welcome! Set your availability</h3>
-                  <p className="text-white/80">Tap any date below to toggle between <strong>Available</strong> and <strong>Off</strong>. Change as many days as you need, then click <strong>Save my calendar</strong> when you're done.</p>
-                </div>
-              </>
+              <div className="bg-cyan-500/20 border-2 border-cyan-400/50 rounded-2xl p-6">
+                <h3 className="font-black text-xl mb-2 text-cyan-300">Welcome! Set your availability</h3>
+                <p className="text-white/80">Tap any date below to toggle between <strong>Available</strong> and <strong>Off</strong>. Change as many days as you need, then click <strong>Save my calendar</strong> when you're done.</p>
+              </div>
             )}
             <div className="flex flex-wrap items-center justify-between gap-4">
               <div>
                 <h2 className="text-2xl sm:text-3xl font-black">{userProfile?.firstName || 'Volunteer'}'s Calendar</h2>
                 <p className="text-white/60 mt-1 flex items-center gap-2 text-sm sm:text-base">
                   <Mountain className="w-4 h-4 flex-shrink-0" />
-                  Milano-Cortina 2026 • February 4-22
+                  Milano-Cortina 2026 • February 5-22
                 </p>
               </div>
               <div className="flex items-center gap-4 sm:gap-6 bg-white/5 backdrop-blur-xl rounded-xl px-4 sm:px-6 py-3 sm:py-4 border border-white/10 flex-wrap">
