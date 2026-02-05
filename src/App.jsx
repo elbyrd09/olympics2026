@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { CheckCircle, AlertTriangle, TrendingUp, Calendar, MessageSquare, Award, Radio, RefreshCw, Mountain, Snowflake, Trophy, Sparkles, Heart, Camera, User } from 'lucide-react';
 
+// Base URL for assets (works in dev and on GitHub Pages subpath)
+const LOGO_URL = `${import.meta.env.BASE_URL}logo-2026.png`;
+
 const countryCodeToFlag = (code) => {
   if (!code || code.length !== 2) return '';
   return String.fromCodePoint(...[...code.toUpperCase()].map(c => 0x1F1E6 + c.charCodeAt(0) - 65));
@@ -429,7 +432,7 @@ const App = () => {
           <div className="text-center mb-8">
             <div className="flex justify-center mb-6">
               <img
-                src="/logo-2026.png"
+                src={LOGO_URL}
                 alt="Milano Cortina 2026"
                 className="h-40 w-auto object-contain brightness-125 contrast-110"
               />
@@ -615,7 +618,7 @@ const App = () => {
             {/* Official Milano Cortina 2026 Logo */}
             <div className="flex items-center gap-2 sm:gap-4 min-w-0">
               <img
-                src="/logo-2026.png"
+                src={LOGO_URL}
                 alt="Milano Cortina 2026"
                 className="h-14 sm:h-24 w-auto object-contain brightness-125 contrast-110 flex-shrink-0"
               />
