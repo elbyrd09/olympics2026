@@ -349,8 +349,9 @@ const App = () => {
       analyzed: newDailyAnalyzed
     }));
 
-    // Check if they just hit the daily limit
+    // Check if they just hit the daily limit — count as one completed shift
     if (newDailyAnalyzed >= DAILY_LIMIT) {
+      setStats(prev => ({ ...prev, shifts: prev.shifts + 1 }));
       setTimeout(() => setShowCelebration(true), 500);
     }
 
