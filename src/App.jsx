@@ -854,13 +854,6 @@ const App = () => {
                     POSITIVE
                   </button>
                   <button
-                    onClick={() => handleSentiment(currentComment.id, 'Neutral')}
-                    className="flex-1 min-h-[48px] sm:min-h-0 bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 py-4 rounded-xl font-black text-base sm:text-lg transition-all hover:scale-105 active:scale-100 shadow-xl flex items-center justify-center gap-2"
-                  >
-                    <MessageSquare className="w-5 h-5 flex-shrink-0" />
-                    NEUTRAL
-                  </button>
-                  <button
                     onClick={() => handleSentiment(currentComment.id, 'Negative')}
                     className="flex-1 min-h-[48px] sm:min-h-0 bg-gradient-to-r from-red-500 to-pink-500 hover:from-red-600 hover:to-pink-600 py-4 rounded-xl font-black text-base sm:text-lg transition-all hover:scale-105 active:scale-100 shadow-xl flex items-center justify-center gap-2"
                   >
