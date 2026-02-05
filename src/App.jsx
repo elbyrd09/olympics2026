@@ -564,23 +564,6 @@ const App = () => {
       {showCelebration && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-sm animate-fadeIn">
           <div className="bg-gradient-to-br from-yellow-500/20 to-orange-500/20 border-4 border-yellow-400 rounded-3xl p-12 max-w-2xl mx-4 text-center relative overflow-hidden">
-            {/* Animated sparkles */}
-            <div className="absolute inset-0 pointer-events-none">
-              {[...Array(20)].map((_, i) => (
-                <Sparkles
-                  key={i}
-                  className="absolute text-yellow-300 animate-pulse"
-                  style={{
-                    left: `${Math.random() * 100}%`,
-                    top: `${Math.random() * 100}%`,
-                    width: `${20 + Math.random() * 30}px`,
-                    height: `${20 + Math.random() * 30}px`,
-                    animationDelay: `${Math.random() * 2}s`
-                  }}
-                />
-              ))}
-            </div>
-
             <Trophy className="w-32 h-32 text-yellow-400 mx-auto mb-6 animate-bounce" />
             <h2 className="text-5xl font-black mb-4 text-yellow-300">Outstanding Work!</h2>
             <p className="text-2xl mb-6">You've completed your daily quota of {DAILY_LIMIT} comment reviews!</p>
@@ -1123,17 +1106,6 @@ const App = () => {
                 className="w-full py-4 bg-gradient-to-r from-cyan-500 to-pink-500 rounded-xl font-black text-xl hover:scale-105 transition-transform shadow-2xl"
               >
                 SAVE CHANGES
-              </button>
-
-              <button
-                type="button"
-                onClick={() => {
-                  ['TEAM26_PROFILE', 'TEAM26_SENTIMENT', 'TEAM26_AVAILABILITY', 'TEAM26_STATS', 'TEAM26_DAILY', 'TEAM26_ON_DUTY', 'TEAM26_VISITED_TASKS'].forEach(key => localStorage.removeItem(key));
-                  window.location.reload();
-                }}
-                className="w-full py-3 mt-4 border border-white/20 rounded-xl font-bold text-white/70 hover:bg-white/10 hover:text-white transition-colors"
-              >
-                Start over — return to registration
               </button>
             </form>
           </div>
