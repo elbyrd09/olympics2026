@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@keyframes gentle-jump {
+  0%, 85%, 100% { transform: translateY(0); }
+  92.5% { transform: translateY(-8px); }
+}
+.animate-gentle-jump {
+  animation: gentle-jump 2s ease-in-out infinite;
+}
