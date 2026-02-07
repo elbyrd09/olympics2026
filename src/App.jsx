@@ -346,19 +346,17 @@ const App = () => {
       [sentiment.toLowerCase()]: prev[sentiment.toLowerCase()] + 1
     }));
 
-    const newDailyAnalyzed = dailyStats.analyzed + 1;
-    setDailyStats(prev => ({
-      ...prev,
-      analyzed: newDailyAnalyzed
-    }));
-
-    // Check if they just hit the daily limit — count as one completed shift
-    if (newDailyAnalyzed >= DAILY_LIMIT) {
-      setStats(prev => ({ ...prev, shifts: prev.shifts + 1 }));
-      setTimeout(() => setShowCelebration(true), 500);
-    }
-
-    };
+    setDailyStats(prev => {
+      const nextAnalyzed = prev.analyzed + 1;
+      if (nextAnalyzed >= DAILY_LIMIT) {
+        setTimeout(() => {
+          setShowCelebration(true);
+          setStats(s => ({ ...s, shifts: s.shifts + 1 }));
+        }, 500);
+      }
+      return { ...prev, analyzed: nextAnalyzed };
+    });
+  };
 
   const toggleAvailability = (date) => {
     const statuses = ['Available', 'Off'];
@@ -570,10 +568,10 @@ const App = () => {
             <div className="bg-white/10 rounded-2xl p-6 mb-6 backdrop-blur-sm">
               <p className="text-lg mb-4">
                 <span className="font-black text-cyan-300">{userProfile?.firstName} {userProfile?.lastName}</span>
-                , your dedication to the Milano-Cortina 2026 Games is exceptional!
+                , your dedication to the Milano-Cortina 2026 Games is AWESOME!
               </p>
-              <p className="text-white/80">
-                The Olympics Media team has been notified of your completed tasks.
+              <p className="text-cyan-300 mt-3">
+                The Olympic Committee will send you a gift for your help. Thank you {userProfile?.firstName || 'volunteer'}!
               </p>
             </div>
             <div className="flex items-center justify-center gap-2 mb-6 px-4 py-3 bg-white/15 rounded-xl">
@@ -834,14 +832,14 @@ const App = () => {
                     className="flex-1 min-h-[48px] sm:min-h-0 bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 py-4 rounded-xl font-black text-base sm:text-lg transition-all hover:scale-105 active:scale-100 shadow-xl flex items-center justify-center gap-2"
                   >
                     <CheckCircle className="w-5 h-5 flex-shrink-0" />
-                    POSITIVE
+                    Looks good
                   </button>
                   <button
                     onClick={() => handleSentiment(currentComment.id, 'Negative')}
                     className="flex-1 min-h-[48px] sm:min-h-0 bg-gradient-to-r from-red-500 to-pink-500 hover:from-red-600 hover:to-pink-600 py-4 rounded-xl font-black text-base sm:text-lg transition-all hover:scale-105 active:scale-100 shadow-xl flex items-center justify-center gap-2"
                   >
                     <AlertTriangle className="w-5 h-5 flex-shrink-0" />
-                    FLAG
+                    Seems wrong
                   </button>
                 </div>
               </div>
@@ -892,6 +890,7 @@ const App = () => {
               {olympicDates.map(date => {
                 const dateObj = new Date(date + 'T00:00:00');
                 const status = availability[date] || 'Available';
+                const isPast = date < todayKey;
                 const statusColors = {
                   'Available': 'from-green-500 to-emerald-500',
                   'Off': 'from-gray-500 to-slate-500'
@@ -900,8 +899,10 @@ const App = () => {
                 return (
                   <button
                     key={date}
-                    onClick={() => toggleAvailability(date)}
-                    className={`bg-gradient-to-br ${statusColors[status] || 'from-green-500 to-emerald-500'} p-4 sm:p-6 rounded-xl hover:scale-105 active:scale-100 transition-transform shadow-xl text-left backdrop-blur-sm min-h-[80px] sm:min-h-0`}
+                    type="button"
+                    onClick={isPast ? undefined : () => toggleAvailability(date)}
+                    disabled={isPast}
+                    className={`bg-gradient-to-br ${isPast ? 'from-gray-600 to-slate-700 opacity-60 cursor-not-allowed' : (statusColors[status] || 'from-green-500 to-emerald-500') + ' hover:scale-105 active:scale-100 cursor-pointer'} p-4 sm:p-6 rounded-xl transition-transform shadow-xl text-left backdrop-blur-sm min-h-[80px] sm:min-h-0`}
                   >
                     <div className="text-sm opacity-90 mb-1">
                       {dateObj.toLocaleDateString('en-US', { weekday: 'long' })}
